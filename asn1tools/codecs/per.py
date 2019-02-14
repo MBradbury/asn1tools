@@ -1985,6 +1985,14 @@ class CompiledType(compiler.CompiledType):
 
         return self._type.decode(decoder)
 
+    def decode2(self, data):
+        decoder = Decoder(bytearray(data))
+
+        decoded = self._type.decode(decoder)
+        decoded_bits = decoder.number_of_read_bits()
+
+        return decoded, decoded_bits
+
     def __repr__(self):
         return repr(self._type)
 

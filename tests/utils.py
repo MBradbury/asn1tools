@@ -46,6 +46,47 @@ class Asn1ToolsBaseTest(unittest.TestCase):
             print('Expected:', decoded_message)
             raise
 
+    def assert_encode_decode2(self,
+                              specification,
+                              type_name,
+                              decoded_message,
+                              encoded_message):
+        try:
+            encoded = specification.encode(type_name, decoded_message)
+        except:
+            print('Failed to encode type with name {}.'.format(type_name))
+            raise
+
+        try:
+            self.assertEqual(encoded, encoded_message)
+        except:
+            print('Wrong encoding of type with name {}.'.format(type_name))
+            print('Actual:', format_encoded(encoded))
+            print('Expected:', format_encoded(encoded_message))
+            raise
+
+        try:
+            decoded, decoded_bits = specification.decode2(type_name, encoded_message)
+        except:
+            print('Failed to decode type with name {}.'.format(type_name))
+            raise
+
+        try:
+            self.assertEqual(decoded, decoded_message)
+        except:
+            print('Wrong decoding of type with name {}.'.format(type_name))
+            print('Actual:', decoded)
+            print('Expected:', decoded_message)
+            raise
+
+        try:
+            self.assertEqual(len(encoded), (decoded_bits + 7) >> 3)
+        except:
+            print('Wrong encoded length of type with name {}.'.format(type_name))
+            print('Actual:', (decoded_bits + 7) >> 3)
+            print('Expected:', len(encoded))
+            raise
+
     def assert_encode_decode_string(self,
                                     specification,
                                     type_name,

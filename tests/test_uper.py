@@ -39,7 +39,7 @@ class Asn1ToolsUPerTest(Asn1ToolsBaseTest):
         ]
 
         for type_name, decoded, encoded in datas:
-            self.assert_encode_decode(foo, type_name, decoded, encoded)
+            self.assert_encode_decode2(foo, type_name, decoded, encoded)
 
     def test_integer(self):
         foo = asn1tools.compile_string(
@@ -103,7 +103,7 @@ class Asn1ToolsUPerTest(Asn1ToolsBaseTest):
         ]
 
         for type_name, decoded, encoded in datas:
-            self.assert_encode_decode(foo, type_name, decoded, encoded)
+            self.assert_encode_decode2(foo, type_name, decoded, encoded)
 
     def test_real(self):
         foo = asn1tools.compile_string(
@@ -144,7 +144,7 @@ class Asn1ToolsUPerTest(Asn1ToolsBaseTest):
         ]
 
         for type_name, decoded, encoded in datas:
-            self.assert_encode_decode(foo, type_name, decoded, encoded)
+            self.assert_encode_decode2(foo, type_name, decoded, encoded)
 
     def test_bit_string(self):
         foo = asn1tools.compile_string(
